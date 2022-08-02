@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+    db:
+        image: postgres:latest
+        container_name: base_bot-db
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_HOST_AUTH_METHOD: "trust"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        restart: on-failure
+    bot:
+        build: .
+        container_name: base_bot
+        volumes:
+            -   .:/base_bot/
+        depends_on:
+            - db
+        restart: on-failure
+    adminer:
+        image: adminer
+        container_name: base_bot-adminer
+        ports:
+            - "8080:8080"
+        depends_on:
+            - db
+        restart: on-failure
+
+volumes:
+    postgres_data:

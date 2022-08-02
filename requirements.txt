@@ -1,0 +1,7 @@
+disnake~=2.5.2
+toml~=0.10.2
+coloredlogs~=15.0.1
+psycopg2-binary~=2.9.3
+SQLAlchemy~=1.4.39
+aiohttp~=3.8.1
+humanize~=4.2.3

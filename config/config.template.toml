@@ -1,0 +1,24 @@
+# Ids should be unset by setting them to -1 but some may be required
+
+[base]
+discord_api_key = ""
+command_prefix = "!"
+status_message = "Base bot"
+
+# If true warning and error logs will also be logged in file discord.log
+log_to_file = true
+
+# Duration of error and success messages
+error_duration = 30
+success_duration = 30
+
+# Connection string to database with specified engine
+# This address is for usage with docker deployment
+connect_string = "postgresql://postgres:postgres@db:5432/postgres" # Example for testing: "sqlite://database.db" For docker workflow: "postgresql://postgres:postgres@db:5432/postgres"
+
+log_channel_id = 838455904571621427
+
+default_loaded_extensions = ["stats", "common"]
+
+[essentials]
+max_cached_messages = 5000

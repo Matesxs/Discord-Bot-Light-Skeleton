@@ -1,0 +1,4 @@
+*.db
+.idea/
+*.log
+tmp/
