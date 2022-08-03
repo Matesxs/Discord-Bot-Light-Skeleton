@@ -22,3 +22,4 @@ default_loaded_extensions = ["common"]
 
 [essentials]
 max_cached_messages = 10000
+delete_messages_after_days = 120

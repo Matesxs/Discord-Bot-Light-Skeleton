@@ -47,3 +47,7 @@ class Strings(metaclass=Formatable):
   common_ping_brief = "Ping a bot and get his reponse times"
 
   common_uptime_brief = "Show uptime of bot"
+
+  # Dev Tools
+  dev_tools_pull_data_description = "Pull guild data and save to database"
+  dev_tools_pull_data_pulling_complete = "**Data pulling completed**"
