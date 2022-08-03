@@ -49,6 +49,8 @@ class BaseAutoshardedBot(commands.AutoShardedBot):
       try:
         self.load_extension(f"core_extensions.{cog}")
         logger.info(f"{cog} loaded")
+      except commands.ExtensionNotFound:
+        logger.warning(f"Failed to load {cog} module - Not found")
       except:
         output = traceback.format_exc()
         logger.error(f"Failed to load {cog} module\n{output}")
@@ -59,6 +61,8 @@ class BaseAutoshardedBot(commands.AutoShardedBot):
       try:
         self.load_extension(f"extensions.{cog}")
         logger.info(f"{cog} loaded")
+      except commands.ExtensionNotFound:
+        logger.warning(f"Failed to load {cog} module - Not found")
       except:
         output = traceback.format_exc()
         logger.warning(f"Failed to load {cog} module\n{output}")

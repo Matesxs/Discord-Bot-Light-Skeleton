@@ -18,7 +18,7 @@ connect_string = "postgresql://postgres:postgres@db:5432/postgres" # Example for
 
 log_channel_id = 838455904571621427
 
-default_loaded_extensions = ["stats", "common"]
+default_loaded_extensions = ["common"]
 
 [essentials]
-max_cached_messages = 5000
+max_cached_messages = 10000

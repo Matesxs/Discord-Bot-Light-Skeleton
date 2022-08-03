@@ -62,7 +62,7 @@ class Errors(Base_Cog):
       output = "".join(traceback.format_exception(type(error), error, error.__traceback__))
       logger.error(output)
 
-      log_channel = self.bot.get_channel(config.ids.log_channel)
+      log_channel = self.bot.get_channel(config.base.log_channel_id)
       if log_channel is None: return
 
       if isinstance(ctx, (disnake.ApplicationCommandInteraction, disnake.ModalInteraction, disnake.MessageCommandInteraction)):
@@ -92,7 +92,7 @@ class Errors(Base_Cog):
     output = traceback.format_exc()
     logger.error(output)
 
-    log_channel = self.bot.get_channel(config.ids.log_channel)
+    log_channel = self.bot.get_channel(config.base.log_channel_id)
     if log_channel is None: return
 
     embeds = []

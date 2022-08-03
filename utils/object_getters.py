@@ -12,7 +12,7 @@ async def get_or_fetch_channel(source: Union[disnake.Guild, commands.AutoSharded
 
   return channel
 
-async def get_or_fetch_message(bot: commands.AutoShardedBot, source: Optional[Union[disnake.TextChannel, disnake.Thread]], message_id: int) -> Optional[disnake.Message]:
+async def get_or_fetch_message(bot: commands.AutoShardedBot, source: Optional[Union[disnake.VoiceChannel, disnake.StageChannel, disnake.TextChannel, disnake.CategoryChannel, disnake.ForumChannel, disnake.Thread, disnake.User]], message_id: int) -> Optional[disnake.Message]:
   message = bot.get_message(message_id)
   if message is None and source is not None:
     try:
