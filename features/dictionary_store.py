@@ -5,15 +5,17 @@ import toml
 
 class DictionaryStore:
   def to_dict(self):
-    def convert(value):
+    def convert(value, attr_name=None):
       if isinstance(value, DictionaryStore):
         return value.to_dict()
       elif isinstance(value, list):
         return [convert(item) for item in value]
+      elif hasattr(self, "__environment__") and attr_name in self.__environment__:
+        return "<env>"
       else:
         return value
 
-    return { attr: convert(getattr(self, attr)) for attr in self.__exportable__   }
+    return { attr: convert(getattr(self, attr), attr) for attr in self.__exportable__   }
 
   def __repr__(self):
     return f'{type(self).__name__}.parse({self.to_dict()!r})'
@@ -23,16 +25,22 @@ class DictionaryStore:
       toml.dump(self.to_dict(), fd)
 
   @classmethod
-  def parse(cls, obj):
+  def parse(cls, obj, obj_key=None):
     if isinstance(obj, list):
       return [cls.parse(v) for v in obj]
     elif isinstance(obj, dict):
       result = cls()
       result.__exportable__ = []
+      result.__environment__ = []
       for k, v in obj.items():
         result.__exportable__.append(k)
-        setattr(result, k, cls.parse(v))
+        if k == "<env>":
+          result.__environment__.append(k)
+        setattr(result, k, cls.parse(v, k))
       return result
+    elif isinstance(obj, str) and obj == "<env>":
+      assert obj_key is not None
+      return os.getenv(obj_key)
     else:
       return obj
 
