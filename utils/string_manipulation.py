@@ -3,12 +3,13 @@ from typing import List, Tuple
 
 def add_string_until_length(strings:List[str], max_length:int, sep:str) -> Tuple[str, List[str]]:
   output = ""
-  number_of_strings = len(strings)
-  for _ in range(number_of_strings):
-    string = strings.pop(0)
+  while strings:
+    string = strings[0]
     tmp_output = (output + string) if output == "" else (output + sep + string)
     if len(tmp_output) > max_length:
       break
+      
+    strings.pop(0)
     output = tmp_output
   return output, strings
 
